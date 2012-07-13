@@ -1,0 +1,12 @@
+{
+    "name": "tunesport",
+    "description": "Control the iTunes transport and receive track change events",
+    "version": "0.0.1",
+    "repository": {
+        "url": "git://github.com/jwalgran/tunesport.git"
+    },
+    "main": "index.js",
+    "scripts": {},
+    "dependencies": {},
+    "devDependencies": {}
+}
