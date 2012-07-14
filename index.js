@@ -8,9 +8,7 @@ var Tunesport = function() {
     events.EventEmitter.call(this);
 
     this.runTransportApplescript = function(command, callback) {
-        // console.log(command);
         var that = this;
-
         var scriptPath = path.join(__dirname, 'applescripts', 'ITunesTransport.scpt');
         var scriptRunner = spawn('osascript', [scriptPath, command]);
         scriptRunner.stdout.on('data', function (data) {
