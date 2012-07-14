@@ -56,6 +56,68 @@ on StopPlaying()
     return "{\"ok\":true}"
 end StopPlaying
 
+on PlayNextTrack()
+    if not IsRunning() then
+        tell application "iTunes"
+            activate
+        end tell
+    end if
+    tell application "iTunes"
+        next track
+    end tell
+    StartPlaying()
+end PlayNextTrack
+
+on PlayPreviousTrack()
+    if not IsRunning() then
+        tell application "iTunes"
+            activate
+        end tell
+    end if
+    tell application "iTunes"
+        previous track
+    end tell
+    StartPlaying()
+end PlayPreviousTrack
+
+on FadeOut()
+    if IsRunning() and IsPlaying()
+        tell application "iTunes"
+            set originalVol to sound volume
+            set currentVol to sound volume
+            repeat with currentVol from sound volume to 0 by -1
+                set sound volume to currentVol
+                delay 0.02
+            end repeat
+        end tell
+        StopPlaying()
+        tell application "iTunes"
+            set sound volume to originalVol
+        end tell
+    end if
+end FadeOut
+
+on FadeIn()
+    if not IsRunning() then
+        tell application "iTunes"
+            activate
+        end tell
+    end if
+    if not IsPlaying() then
+        tell application "iTunes"
+            set originalVol to sound volume
+            set currentVol to 0
+            set sound volume to 0
+            play
+            repeat with currentVol from 0 to originalVol by 1
+                set sound volume to currentVol
+                delay 0.02
+            end repeat
+        end tell
+        return GetCurrentTrack()
+    end if
+end FadeIn
+
 on run argv
     set command to item 1 of argv
     if command is "currenttrack" then
@@ -66,6 +128,14 @@ on run argv
         PausePlaying()
     else if command is "stop"
         StopPlaying()
+    else if command is "next"
+        PlayNextTrack()
+    else if command is "previous"
+        PlayPreviousTrack()
+    else if command is "fadeout"
+        FadeOut()
+    else if command is "fadein"
+        FadeIn()
     else
         return "{\"error\":\"Unsupported command\"}"
     end if

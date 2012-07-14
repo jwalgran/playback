@@ -85,4 +85,20 @@ Tunesport.prototype.currentTrack = function(callback) {
     this.runTransportApplescript('currenttrack', callback);
 };
 
+Tunesport.prototype.next = function(callback) {
+    this.runTransportApplescript('next', callback);
+};
+
+Tunesport.prototype.previous = function(callback) {
+    this.runTransportApplescript('previous', callback);
+};
+
+Tunesport.prototype.fadeOut = function(callback) {
+    this.runTransportApplescript('fadeout', callback);
+};
+
+Tunesport.prototype.fadeIn = function(callback) {
+    this.runTransportApplescript('fadein', callback);
+};
+
 module.exports = new Tunesport();
