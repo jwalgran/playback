@@ -1,6 +1,7 @@
 var spawn = require('child_process').spawn;
 var events = require('events');
 var util = require('util');
+var path = require('path');
 
 var Tunesport = function() {
     var that = this;
@@ -9,7 +10,9 @@ var Tunesport = function() {
     this.runTransportApplescript = function(command, callback) {
         // console.log(command);
         var that = this;
-        var scriptRunner = spawn('osascript', ['applescripts/ITunesTransport.scpt', command]);
+
+        var scriptPath = path.join(__dirname, 'applescripts', 'ITunesTransport.scpt');
+        var scriptRunner = spawn('osascript', [scriptPath, command]);
         scriptRunner.stdout.on('data', function (data) {
             var result;
             try {
