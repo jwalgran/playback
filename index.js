@@ -7,9 +7,15 @@ var Playback = function() {
     var that = this;
     events.EventEmitter.call(this);
 
-    this.runTransportApplescript = function(command, callback) {
-        var scriptPath = path.join(__dirname, 'applescripts', 'ITunesTransport.scpt');
-        var scriptRunner = spawn('osascript', [scriptPath, command]);
+    this.isWindows = !!process.platform.match(/^win/);
+
+    this.runTransportScript = function(command, callback) {
+        var scriptPath = this.isWindows ?
+            path.join(__dirname, 'windows_scripts', 'iTunes.js') :
+            path.join(__dirname, 'applescripts', 'ITunesTransport.scpt');
+        var scriptRunner = this.isWindows ?
+            spawn('cscript', ['//Nologo', scriptPath, command]) :
+            spawn('osascript', [scriptPath, command]);
         scriptRunner.stdout.on('data', function (data) {
             var result;
             try {
@@ -43,7 +49,7 @@ var Playback = function() {
 
     // Poll for changes to the current track
     setInterval(function() {
-        that.runTransportApplescript('currenttrack', function(data) {
+        that.runTransportScript('currenttrack', function(data) {
             if (data || that.playing) {
                 var track;
                 try {
@@ -75,35 +81,35 @@ var Playback = function() {
 util.inherits(Playback, events.EventEmitter);
 
 Playback.prototype.play = function(callback) {
-    this.runTransportApplescript('play', callback);
+    this.runTransportScript('play', callback);
 };
 
 Playback.prototype.pause = function(callback) {
-    this.runTransportApplescript('pause', callback);
+    this.runTransportScript('pause', callback);
 };
 
 Playback.prototype.stop = function(callback) {
-    this.runTransportApplescript('stop', callback);
+    this.runTransportScript('stop', callback);
 };
 
 Playback.prototype.currentTrack = function(callback) {
-    this.runTransportApplescript('currenttrack', callback);
+    this.runTransportScript('currenttrack', callback);
 };
 
 Playback.prototype.next = function(callback) {
-    this.runTransportApplescript('next', callback);
+    this.runTransportScript('next', callback);
 };
 
 Playback.prototype.previous = function(callback) {
-    this.runTransportApplescript('previous', callback);
+    this.runTransportScript('previous', callback);
 };
 
 Playback.prototype.fadeOut = function(callback) {
-    this.runTransportApplescript('fadeout', callback);
+    this.runTransportScript('fadeout', callback);
 };
 
 Playback.prototype.fadeIn = function(callback) {
-    this.runTransportApplescript('fadein', callback);
+    this.runTransportScript('fadein', callback);
 };
 
 module.exports = new Playback();

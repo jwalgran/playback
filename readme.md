@@ -1,6 +1,6 @@
 # playback
 
-Control the iTunes transport on OS X and receive track change events
+Control the iTunes transport on OS X and Windows and receive track change events
 
 # example
 
@@ -21,10 +21,10 @@ Pause, play, and change tracks in iTunes and watch the Node console.
 
 Start playing the current track. If `callback` is not defined emits a `playing` event with an object argument representing the current track:
 
-    { 
+    {
         name: 'Dance Yrself Clean',
         artist: 'LCD Soundsystem',
-        album: 'This Is Happening' 
+        album: 'This Is Happening'
     }
 
 If `callback` is defined it is called with the same object.
@@ -94,3 +94,13 @@ Set the iTunes volume to zero, start playback, then slowly return the volume to 
 With [npm](https://npmjs.org) do:
 
     npm install playback
+
+# release notes
+
+## 0.1.0
+
+Windows support
+
+## 0.0.1
+
+Initial release
