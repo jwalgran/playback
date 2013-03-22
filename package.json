@@ -6,7 +6,17 @@
         "url": "git://github.com/jwalgran/playback.git"
     },
     "main": "index.js",
+    "keywords": [
+        "itunes",
+        "music"
+    ],
     "scripts": {},
     "dependencies": {},
-    "devDependencies": {}
+    "devDependencies": {},
+    "author": {
+        "name": "Justin Walgran",
+        "email": "jwalgran@azavea.com",
+        "url": "http://azavea.com"
+    },
+    "license": "MIT"
 }
