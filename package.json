@@ -1,22 +1,22 @@
 {
-    "name": "playback",
-    "description": "Control the iTunes transport and receive track change events",
-    "version": "0.1.0",
-    "repository": {
-        "url": "git://github.com/jwalgran/playback.git"
-    },
-    "main": "index.js",
-    "keywords": [
-        "itunes",
-        "music"
-    ],
-    "scripts": {},
-    "dependencies": {},
-    "devDependencies": {},
-    "author": {
-        "name": "Justin Walgran",
-        "email": "jwalgran@azavea.com",
-        "url": "http://azavea.com"
-    },
-    "license": "MIT"
+  "name": "playback",
+  "description": "Control the iTunes transport and receive track change events",
+  "version": "0.1.1",
+  "repository": {
+    "url": "git://github.com/jwalgran/playback.git"
+  },
+  "main": "index.js",
+  "keywords": [
+    "itunes",
+    "music"
+  ],
+  "scripts": {},
+  "dependencies": {},
+  "devDependencies": {},
+  "author": {
+    "name": "Justin Walgran",
+    "email": "jwalgran@azavea.com",
+    "url": "http://azavea.com"
+  },
+  "license": "MIT"
 }
