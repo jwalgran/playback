@@ -16,7 +16,7 @@ var isRunning = function() {
 };
 
 var getCurrentTrack = function() {
-    var result, currentTrack ;
+    var currentTrack;
     if (isPlaying()) {
         currentTrack = iTunes.CurrentTrack;
         return JSON.stringify({
@@ -97,13 +97,19 @@ var commands = {
             };
         }
         return JSON.stringify({ok: true});
+    },
+    setvolume: function(volume) {
+        iTunes.SoundVolume = volume;
     }
 };
 
-var command = WScript.Arguments.Item(0);
+var args = WScript.Arguments.Item(0).split(' ');
+var command = args[0];
+var property = args[1] || null;
+
 
 if (commands[command]) {
-    WScript.echo(commands[command]());
+    WScript.echo(commands[command](property));
 } else {
     WScript.echo(JSON.stringify({error: "Unsupported command"}));
 }
