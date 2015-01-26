@@ -97,6 +97,10 @@ With [npm](https://npmjs.org) do:
 
 # release notes
 
+## 0.2.0
+
+Add ``setVolume`` command (Windows only)
+
 ## 0.1.0
 
 Windows support

@@ -1,7 +1,7 @@
 {
   "name": "playback",
   "description": "Control the iTunes transport and receive track change events",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "repository": {
     "url": "git://github.com/jwalgran/playback.git"
   },
