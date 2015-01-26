@@ -112,4 +112,8 @@ Playback.prototype.fadeIn = function(callback) {
     this.runTransportScript('fadein', callback);
 };
 
+Playback.prototype.setVolume = function(volume, callback) {
+    this.runTransportScript('setvolume ' + volume, callback);
+};
+
 module.exports = new Playback();
