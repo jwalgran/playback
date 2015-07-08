@@ -1,4 +1,4 @@
-property ApplicationLib : load script POSIX file "ApplicationLib.scpt"
+property ApplicationLib : load script (POSIX path of ((path to me as text) & "::") & "ApplicationLib.scpt") as POSIX file
 
 on IsRunning()
     tell ApplicationLib
@@ -25,7 +25,8 @@ on GetCurrentTrack()
             set trackName to (get name of current track)
             set trackArtist to (get artist of current track)
             set trackAlbum to (get album of current track)
-            return "{\"name\":\"" & trackName & "\",\"artist\":\"" & trackArtist & "\",\"album\":\"" & trackAlbum & "\"}"
+            set trackLoved to (get loved of current track) as boolean
+            return "{\"name\":\"" & trackName & "\",\"artist\":\"" & trackArtist & "\",\"album\":\"" & trackAlbum & "\",\"loved\":" & trackLoved & "}"
         end tell
     else
         return "null"
