@@ -6,7 +6,7 @@ Control the iTunes transport on OS X and Windows and receive track change events
 
 If you are in public, plug in some headphones or lower your volume, then:
 
-    var itunes = require('playback');
+    var itunes = require('playback')({fetchArtwork:true});
     itunes.on('playing', function(data){ console.dir(data);} );
     itunes.on('paused', function(data){ console.log('paused');} );
     itunes.play();
@@ -15,7 +15,9 @@ Pause, play, and change tracks in iTunes and watch the Node console.
 
 # methods
 
-    var itunes = require('playback')
+    var itunes = require('playback')(opts)
+
+* opts.fetchArtwork (boolean) - If true, will also fetch artwork as base64 and add the field called 'art' to the current track
 
 ## itunes.play([callback])
 
@@ -96,6 +98,10 @@ With [npm](https://npmjs.org) do:
     npm install playback
 
 # release notes
+
+## 0.3.0
+
+Add ``art`` property to current track (Mac only)
 
 ## 0.2.0
 
