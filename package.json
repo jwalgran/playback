@@ -18,5 +18,28 @@
     "email": "jwalgran@azavea.com",
     "url": "http://azavea.com"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jwalgran/playback/issues"
+  },
+  "_id": "playback@0.2.0",
+  "dist": {
+    "shasum": "c4e3c67612bb6105b52ae054541fc03ff6c9bb17",
+    "tarball": "http://registry.npmjs.org/playback/-/playback-0.2.0.tgz"
+  },
+  "_from": "playback@*",
+  "_npmVersion": "1.3.11",
+  "_npmUser": {
+    "name": "jwalgran",
+    "email": "justin@walgran.com"
+  },
+  "maintainers": [
+    {
+      "name": "jwalgran",
+      "email": "justin@walgran.com"
+    }
+  ],
+  "directories": {},
+  "_shasum": "c4e3c67612bb6105b52ae054541fc03ff6c9bb17",
+  "_resolved": "https://registry.npmjs.org/playback/-/playback-0.2.0.tgz"
 }
