@@ -3,7 +3,11 @@ var events = require('events');
 var util = require('util');
 var path = require('path');
 
-var Playback = function() {
+var Playback = function(opts) {
+    opts = opts||{};
+    if(typeof opts.fetchArtwork !== 'boolean'){
+      opts.fetchArtwork = false;
+    }
     var that = this;
     events.EventEmitter.call(this);
 
@@ -39,13 +43,38 @@ var Playback = function() {
                 } else if (command === 'pause') {
                     that.emit('paused', result);
                 } else if (command === 'currenttrack') {
-                    that.emit('playing', result);
+                   playing(result);
                 }
             }
         });
     };
-
     that.playing = null;
+
+    function playing(track){
+
+        //if we dont want the artwork, just send the track data immediately
+        if(!opts.fetchArtwork){
+            that.emit('playing', track);
+            return;
+        }
+
+        //otherwise receive chunks of the file and send the whole image
+        //once we have all the parts as a field called 'art' that is base64
+        var file = "";
+        function emitFile(){
+            var f = file.substring(10,file.length-2)
+            track.art = 'data:image/jpeg;base64,'+ new Buffer(f,"hex").toString('base64');
+            that.emit('playing', track);
+        }
+
+        that.runTransportScript('art', function(data) {
+            var d = data.toString();
+            file+=d;
+            if(d.indexOf("»") !== -1){
+              emitFile();
+            }
+        });
+    }
 
     // Poll for changes to the current track
     setInterval(function() {
@@ -62,12 +91,12 @@ var Playback = function() {
                     track.album !== that.playing.album ||
                     track.name !== that.playing.name ) {
                         that.playing = track;
-                        that.emit('playing', track);
+                        playing(track);
                     }
                 } else if (that.playing !== track) {
                     that.playing = track;
                     if (track) {
-                        that.emit('playing', track);
+                        playing(track);
                     } else {
                         that.emit('paused', track);
                     }
