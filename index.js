@@ -12,19 +12,11 @@ var Playback = function() {
     this.runTransportScript = function(command, callback) {
         var scriptPath = this.isWindows ?
             path.join(__dirname, 'windows_scripts', 'iTunes.js') :
-            path.join(__dirname, 'applescripts', 'ITunesTransport.scpt');
+            path.join(__dirname, 'applescripts', 'ITunesTransport.js');
         var scriptRunner = this.isWindows ?
             spawn('cscript', ['//Nologo', scriptPath, command]) :
             spawn('osascript', [scriptPath, command]);
         scriptRunner.stdout.on('data', function (data) {
-            data = (function() {
-              var res = {};
-              var keys=['name', 'artist', 'album'];
-              data.toString().match(/{(.*)}/)[1].replace(/^"name":"(.*?)","artist":"(.*?)","album":"(.*?)"$/, function(){
-                for(i=0; i < 3; i++) res[keys[i]] = arguments[i+1]
-              })
-              return JSON.stringify(res)
-            })()
             var result;
             try {
                 result = JSON.parse(data);
