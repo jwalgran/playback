@@ -17,6 +17,14 @@ var Playback = function() {
             spawn('cscript', ['//Nologo', scriptPath, command]) :
             spawn('osascript', [scriptPath, command]);
         scriptRunner.stdout.on('data', function (data) {
+            data = (function() {
+              var res = {};
+              var keys=['name', 'artist', 'album'];
+              data.toString().match(/{(.*)}/)[1].replace(/^"name":"(.*?)","artist":"(.*?)","album":"(.*?)"$/, function(){
+                for(i=0; i < 3; i++) res[keys[i]] = arguments[i+1]
+              })
+              return JSON.stringify(res)
+            })()
             var result;
             try {
                 result = JSON.parse(data);
