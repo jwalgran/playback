@@ -12,7 +12,7 @@ var Playback = function() {
     this.runTransportScript = function(command, callback) {
         var scriptPath = this.isWindows ?
             path.join(__dirname, 'windows_scripts', 'iTunes.js') :
-            path.join(__dirname, 'applescripts', 'ITunesTransport.scpt');
+            path.join(__dirname, 'applescripts', 'ITunesTransport.js');
         var scriptRunner = this.isWindows ?
             spawn('cscript', ['//Nologo', scriptPath, command]) :
             spawn('osascript', [scriptPath, command]);
