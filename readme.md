@@ -24,7 +24,8 @@ Start playing the current track. If `callback` is not defined emits a `playing` 
     {
         name: 'Dance Yrself Clean',
         artist: 'LCD Soundsystem',
-        album: 'This Is Happening'
+        album: 'This Is Happening',
+        duration: '536'
     }
 
 If `callback` is defined it is called with the same object.
@@ -52,7 +53,8 @@ Get information about the currently playing track. If `callback` is not defined 
     {
         name: 'Lizzy',
         artist: 'Melvins',
-        album: 'Houdini'
+        album: 'Houdini',
+        duration: '283'
     }
 
 If `callback` is defined it is called with the same object.
@@ -64,7 +66,8 @@ Skip to the next song in the current playlist. Start playing if iTunes is paused
     {
         name: 'Going Blind',
         artist: 'Melvins',
-        album: 'Houdini'
+        album: 'Houdini',
+        duration: '272'
     }
 
 If `callback` is defined it is called with the same object.
@@ -76,7 +79,8 @@ Skip to the previous song in the current playlist. Start playing if iTunes is pa
     {
         name: 'Night Goat',
         artist: 'Melvins',
-        album: 'Houdini'
+        album: 'Houdini',
+        duration: '281'
     }
 
 If `callback` is defined it is called with the same object.

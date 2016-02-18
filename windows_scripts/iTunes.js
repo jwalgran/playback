@@ -22,7 +22,8 @@ var getCurrentTrack = function() {
         return JSON.stringify({
             name: currentTrack.Name,
             artist: currentTrack.Artist,
-            album: currentTrack.Album
+            album: currentTrack.Album,
+            duration: currentTrack.Duration
         });
     } else {
         return null;
