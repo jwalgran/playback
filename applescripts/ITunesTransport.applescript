@@ -25,7 +25,8 @@ on GetCurrentTrack()
             set trackName to (get name of current track)
             set trackArtist to (get artist of current track)
             set trackAlbum to (get album of current track)
-            return "{\"name\":\"" & trackName & "\",\"artist\":\"" & trackArtist & "\",\"album\":\"" & trackAlbum & "\"}"
+            set trackDuration to (get duration of current track)
+            return "{\"name\":\"" & trackName & "\",\"artist\":\"" & trackArtist & "\",\"album\":\"" & trackAlbum & "\",\"duration\":\"" & trackDuration & "\"}"
         end tell
     else
         return "null"
