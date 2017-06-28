@@ -11,7 +11,10 @@
     "music"
   ],
   "scripts": {},
-  "dependencies": {},
+  "dependencies": {
+    "iconv-lite": "^0.4.18",
+    "jschardet": "^1.4.2"
+  },
   "devDependencies": {},
   "author": {
     "name": "Justin Walgran",
