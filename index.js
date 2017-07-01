@@ -2,6 +2,8 @@ var spawn = require('child_process').spawn;
 var events = require('events');
 var util = require('util');
 var path = require('path');
+var iconv = require('iconv-lite');
+var jschardet = require('jschardet');
 
 var Playback = function() {
     var that = this;
@@ -18,8 +20,14 @@ var Playback = function() {
             spawn('osascript', [scriptPath, command]);
         scriptRunner.stdout.on('data', function (data) {
             var result;
+            var encodedData = data;
+            if(that.isWindows) {
+                var charCode = jschardet.detect(data);
+                var buffer = new Buffer(data, 'binary');
+                encodedData = iconv.decode(buffer, charCode.encoding);
+            }
             try {
-                result = JSON.parse(data);
+                result = JSON.parse(encodedData);
             } catch(e) {
                 result = data;
             }
