@@ -21,7 +21,7 @@ var Playback = function() {
         scriptRunner.stdout.on('data', function (data) {
             var result;
             var encodedData = data;
-            if(that.isWindows){
+            if(that.isWindows) {
                 var charCode = jschardet.detect(data);
                 var buffer = new Buffer(data, 'binary');
                 encodedData = iconv.decode(buffer, charCode.encoding);
